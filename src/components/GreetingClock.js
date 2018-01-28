@@ -1,11 +1,14 @@
 import React from "react";
 import ButtonDelete from "./ButtonDelete";
+import AlertBanner from "./Alert";
 
 class Clock extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            counter: Math.round(Math.random() * 100),
+            showAlert: false,
+            alertType: 'success',
+            counter: Math.round(Math.random() * 10),
             date: new Date()
         };
 
@@ -27,14 +30,15 @@ class Clock extends React.Component {
     tick() {
         this.setState((prevState, props) => ({
             counter: prevState.counter + props.increment,
-            date: new Date()
+            date: new Date(),
+            showAlert: prevState.counter > 30 ? true : false
         }));
-        /*
-        this.setState({
-            counter: this.state.counter + this.props.increment,
-            date: new Date()
-        });
-        */
+
+        if (this.state.counter > 50) {
+            this.setState({
+                alertType: 'danger'
+            });
+        }
     }
 
     handleDeleteClock() {
@@ -46,9 +50,11 @@ class Clock extends React.Component {
         return (
             <div id={this.props.id}>
                 <h1>Hello, world!</h1>
+                <AlertBanner isShow={this.state.showAlert} alertType={this.state.alertType}
+                             alertMessage={"Counter reach " + this.state.counter}/>
                 <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
                 <p>Counter {this.state.counter}.</p>
-                <ButtonDelete label={this.props.id} onClick={this.handleDeleteClock} />
+                <ButtonDelete label={this.props.id} onClick={this.handleDeleteClock}/>
             </div>
         );
     }
