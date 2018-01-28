@@ -1,6 +1,6 @@
 import React from "react";
 
-class ButtonDelete extends React.Component {
+class DeleteButton extends React.Component {
     render() {
         return (
             <button onClick={this.props.onClick}>
@@ -10,4 +10,4 @@ class ButtonDelete extends React.Component {
     }
 }
 
-export default ButtonDelete;
+export default DeleteButton;

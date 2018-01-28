@@ -1,6 +1,6 @@
 import React from "react";
 
-function Mailbox(props) {
+function MailCounter(props) {
     const unreadMessages = props.unreadMessages;
     return (
         <div>
@@ -15,4 +15,16 @@ function Mailbox(props) {
     );
 }
 
-export default Mailbox;
+function Mailbox(props) {
+    const mails = props.data;
+    const listItems = mails.map((mail) =>
+        <li key={mail.id.toString()}>
+            {mail.content}
+        </li>
+    );
+    return (
+        <ul className="list">{listItems}</ul>
+    );
+}
+
+export default {Mailbox, MailCounter};

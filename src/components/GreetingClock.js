@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonDelete from "./ButtonDelete";
+import ButtonDelete from "./DeleteButton";
 import AlertBanner from "./Alert";
 
 class Clock extends React.Component {
@@ -48,7 +48,7 @@ class Clock extends React.Component {
 
     render() {
         return (
-            <div id={this.props.id}>
+            <div id={this.props.id} className="clock">
                 <h1>Hello, world!</h1>
                 <AlertBanner isShow={this.state.showAlert} alertType={this.state.alertType}
                              alertMessage={"Counter reach " + this.state.counter}/>
